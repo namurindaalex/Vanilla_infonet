@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Infonet - Your Gateway to Vanilla Trade</title>
+    <link rel="stylesheet" href="landing2.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="IMAGES/logo1.png" alt="Logo" width="210" height="150">
+            </div>
+            <div class="navbar-profile">                
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#vanilla-market">Vanilla Market</a>
+                        <ul>
+                            <li><a href="#">Buy Vanilla</a></li>
+                            <li><a href="#">Sell Vanilla</a></li>
+                            <li><a href="#">processing companies</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#resources">Resources</a>
+                        <ul>
+                            <li><a href="#free">Free Guides</a></li>
+                            <li><a href="#">Premium Content</a></li>
+                            <li><a href="#">Consult Experts</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                    <li><a href="login_sign_page.php" class="btn">Sign up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+   <!-- Hero Section with Sliding Images -->
+   <section class="hero">
+    <div class="hero-slider">
+        <div class="slide">
+            <img src="IMAGES/img2.jpg" alt="Vanilla Farm Image 1">
+            <div class="slide-text">
+                <h2>Empowering Vanilla Farmers</h2>
+                <p>Connect with top buyers and Vanilla processing companies in the region and get the best prices for your vanilla.</p>
+                <a href="#" class="btn">Join as a Farmer</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="IMAGES/img3.jpg" alt="Vanilla Farm Image 2">
+            <div class="slide-text">
+                <h2>Buy Premium Vanilla</h2>
+                <p>Access high-quality vanilla from trusted farms in Western Uganda using our platform.</p>
+                <a href="#" class="btn">Start Buying</a>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="IMAGES/img6.jpg" alt="Vanilla Trading Image">
+            <div class="slide-text">
+                <h2>Grow Your Vanilla Business</h2>
+                <p>Use our platform to scale your vanilla production and reach more buyers.</p>
+                <a href="#" class="btn">Learn More</a>
+            </div>
+        </div>
+    </div>
+    <button class="arrow arrow-left">&#10094;</button>
+    <button class="arrow arrow-right">&#10095;</button>
+</section>
+
+
+    <!-- About the Project Section -->
+            <section class="about">
+                <h2 id="about">About the Vanilla Infonet Project</h2>
+                <p>The Vanilla Infonet Project is a cutting-edge platform designed to empower vanilla farmers 
+                    in Western Uganda by providing them with real-time access to market information, direct 
+                    connections to buyers, and detailed insights into pricing trends. <br /><br>Our mission is to revolutionize 
+                    the vanilla supply chain through technology, fostering transparency, efficiency, and sustainability in the industry.
+                </p>
+                <p>By utilizing innovative tools like data analytics and secure online discussions, we aim to 
+                    bridge the gap between vanilla farmers and buyers, ensuring that farmers get fair value for 
+                    their produce while buyers can source high-quality vanilla beans directly from the producers.
+                    <br><br>
+                </p>
+                Our platform offers the following key features:
+                
+                <ul>
+                    <li><strong><a href="#" onclick="toggleDetail(event, 'detail1')">Direct Communication with Farmers</a></strong> 
+                        <br>
+                        <span id="detail1" style="display: none;">Buyers can directly connect with farmers, fostering stronger business relationships and reducing reliance on middlemen.</span>
+                    </li>
+                    <li><strong><a href="#" onclick="toggleDetail(event, 'detail2')">Real-time Market Data</a></strong> 
+                        <br>
+                        <span id="detail2" style="display: none;">Farmers gain instant access to updated prices, demand trends, and market analytics, enabling them to make informed decisions and optimize their sales.</span>
+                    </li>
+                    <li><strong><a href="#" onclick="toggleDetail(event, 'detail3')">Knowledge Sharing and Support</a></strong> 
+                        <br>
+                        <span id="detail3" style="display: none;">The Vanilla Infonet also offers a library of educational resources and expert contacts, assisting farmers in improving their cultivation techniques and expanding their market reach.</span>
+                    </li>
+                    <li><strong><a href="#" onclick="toggleDetail(event, 'detail4')">Advanced Analytics</a></strong> 
+                        <br>
+                        <span id="detail4" style="display: none;">Our platform leverages data analytics to provide insights on vanilla market trends, helping farmers and buyers plan their business strategies more effectively.</span>
+                    </li>
+                    <li><strong>Many more</strong></li>
+                </ul>
+                <br><br>
+                <p style="font-size: 1.3rem; color: chocolate"><b>Through our partnership with the Thukolhere Hawuma farmers’ group in Kasese District, we are 
+                    committed to making vanilla farming more profitable, transparent, and sustainable, benefitting 
+                    the entire vanilla value chain in Uganda. Join us in transforming the future of vanilla production in Western Uganda!</b></p>
+            </section>
+
+            <!-- JavaScript for toggling details without refreshing the page -->
+            <script>
+                function toggleDetail(event, id) {
+                    event.preventDefault(); // Prevents the page from refreshing
+                    var detail = document.getElementById(id);
+                    // Toggle the display property between 'block' and 'none'
+                    detail.style.display = (detail.style.display === "none" || detail.style.display === "") ? "block" : "none";
+                }
+            </script>
+
+
+
+    <div class="titlee">
+        <h3>How it works</h3>
+        <P>Our platform facilitates seamless connections between vanilla 
+            farmers, buyers and vanilla processing companies, ensuring a transparent and 
+            secure environment for all transactions. <br>Follow the steps below to get started. </P>
+    </div>
+      
+    <br>
+    <div class="products">
+        <div class="box"><h2>1. Create an Account</h2>
+            <img src="IMAGES/sms.png" width="90" height="90">
+        <p>Sign up as a <strong>Vanilla Farmer</strong> or <strong>Trader</strong> to gain full 
+        access to the platform's features. 
+        Farmers can list their vanilla products, while traders can browse, negotiate, and purchase.</p>
+        </div>
+        <div class="box"><h2>2. Access Market Information</h2>
+            <img src="IMAGES/airtime.png" width="90" height="90">
+        <p>Leverage our market insights, price trends, and expert resources to make informed decisions. 
+            Stay up-to-date with the latest vanilla market dynamics in Western Uganda.</p>
+        </div>
+        <div class="box"><h2>3. Browse and Post Listings</h2>
+            <img src="IMAGES/ussd.png" width="90" height="90">
+        <p>Farmers can post their available vanilla for sale, including details such as 
+            quality, quantity, and pricing. Traders can explore these listings and filter by 
+            various criteria to find the perfect match.</p>
+        </div>
+        <div class="box"><h2>4. Engage in Secure Transactions</h2>
+            <img src="IMAGES/voice.png" width="90" height="90">
+        <p>Initiate secure transactions through our platform's trusted payment systems. Both buyers and 
+            sellers can negotiate and finalize deals with transparency, ensuring fair pricing for all.</p>
+        </div>
+        <div class="box"><h2>5. Participate in Events & Workshops</h2>
+            <img src="IMAGES/data.png" width="90" height="90">
+        <p>Join community events and workshops to enhance your vanilla farming practices
+             or learn more about the trading industry. 
+            Our platform connects users with valuable learning opportunities.</p>
+        </div>
+        <div class="box"><h2>6. Build Long-Term Relationships</h2>
+            <img src="IMAGES/airtime.png" width="90" height="90">
+        <p>Establish trusted connections between farmers and traders. Our platform promotes 
+            collaboration and long-term partnerships to boost the vanilla industry in the region.</p>
+        </div>
+    </div>
+
+    <!-- Resources Section -->
+    <section id="free" class="resources">
+        <h2>Vanilla Resources</h2>
+        <p>Explore our extensive resources to help you grow and scale your vanilla business.</p>
+        <div class="resource-links">
+            <a href="#" class="btn">Free Guides</a>
+            <a href="#" class="btn">Premium Content</a>
+            <a href="#" class="btn">Consult with Experts</a>
+        </div>
+    </section>
+    
+     <!-- Testimonials Section -->
+     <section id="testimonials" class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-item">
+                <p>"Vanilla Infonet has helped me get direct access to top buyers. My sales have tripled since joining!"</p>
+                <h4>Jane Doe, Vanilla Farmer</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"The platform is easy to use, and I trust the verified sellers for my bulk vanilla purchases."</p>
+                <h4>John Smith, Vanilla Buyer</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section id="faqs" class="faqs">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faqs-content">
+            <div class="faq-item">
+                <h3>What is Vanilla Infonet?</h3>
+                <p>Vanilla Infonet is an interactive web portal designed to enhance vanilla production by connecting farmers, buyers, and experts. It provides resources, market information, and tools to streamline the vanilla production process.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How can I get started with Vanilla Infonet?</h3>
+                <p>To get started, you need to register on the Vanilla Infonet platform. Once registered, you can access various features including market information, event management, and post management. Visit our registration page to create an account.</p>
+            </div>
+            <a href="#" class="btn">Read More</a>
+        </div>
+    </section>
+
+
+     <!-- Footer Section -->
+     <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+            </div>
+            <div class="social-media">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+            </div>
+        </div>
+        <p>&copy; 2024 Vanilla Infonet. All rights reserved.</p>
+    </footer>
+
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const boxes = document.querySelectorAll('.box');
+    let ticking = false;
+
+    function checkBoxes() {
+        const triggerBottom = window.innerHeight / 5 * 4;
+        boxes.forEach(box => {
+            const boxTop = box.getBoundingClientRect().top;
+            if (boxTop < triggerBottom) {
+                box.classList.add('show');
+            } else {
+                box.classList.remove('show');
+            }
+        });
+        ticking = false; // Reset the ticking flag
+    }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(checkBoxes);
+            ticking = true; // Prevent further scroll events until the function has run
+        }
+    });
+
+    // Initial check
+    checkBoxes();
+});
+
+    </script>
+    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.querySelector('.hero-slider');
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let index = 0;
+    const intervalTime = 2000; // Time in milliseconds
+    let slideInterval;
+
+    function moveToSlide(newIndex) {
+        // Ensure newIndex is within bounds
+        index = (newIndex + totalSlides) % totalSlides;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    function startSlideInterval() {
+        slideInterval = setInterval(() => {
+            moveToSlide(index + 1);
+        }, intervalTime);
+    }
+
+    function stopSlideInterval() {
+        clearInterval(slideInterval);
+    }
+
+    // Initialize automatic sliding
+    startSlideInterval();
+
+    // Handle arrow navigation
+    document.querySelector('.arrow-left').addEventListener('click', () => {
+        stopSlideInterval();
+        moveToSlide(index - 1);
+        startSlideInterval();
+    });
+
+    document.querySelector('.arrow-right').addEventListener('click', () => {
+        stopSlideInterval();
+        moveToSlide(index + 1);
+        startSlideInterval();
+    });
+
+    // Pause sliding when user interacts with slider (hover, focus)
+    slider.addEventListener('mouseenter', stopSlideInterval);
+    slider.addEventListener('mouseleave', startSlideInterval);
+    
+    // Pause on focus for accessibility
+    document.querySelectorAll('.arrow-left, .arrow-right').forEach(button => {
+        button.addEventListener('focus', stopSlideInterval);
+        button.addEventListener('blur', startSlideInterval);
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Current Vanilla Price</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="chart.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Vanilla Market Price Overview</h1>
+    </header>
+
+    <!-- Chart Container -->
+    <div class="chart-container">
+        <canvas id="vanillaChart"></canvas>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <!-- Duration Selection -->
+        <select id="durationSelect">
+            <option value="hours">1 Day</option>
+            <option value="days">1 Month</option>
+            <option value="months">1 Year</option>
+        </select>
+
+        <!-- Buyer Dropdown -->
+        <div class="dropdown1">
+            <button id="buyerBtn">Buy</button>
+        </div>
+        
+        <script>
+            document.getElementById('buyerBtn').addEventListener('click', function() {
+                window.location.href = 'farm.php';
+            });
+        </script>
+        
+        <!-- Seller Dropdown -->
+        <div class="dropdown2">
+            <button id="sellerBtn">Sell</button>
+        </div>
+        
+        <script>
+            document.getElementById('sellerBtn').addEventListener('click', function() {
+                window.location.href = 'buyerlist.php';
+            });
+        </script>
+        
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Fetch Real-Time Data (Simulated)
+        async function fetchRealTimeData(duration) {
+            // Replace with actual data fetching logic
+            // For demonstration, we'll simulate it with static data
+            const now = new Date();
+            let data = [];
+            let labels = [];
+
+            switch(duration) {
+                case 'hours':
+                    for (let i = 23; i >= 0; i--) {
+                        const label = new Date(now.getTime() - i * 60 * 60 * 1000);
+                        labels.push(`${label.getMonth() + 1}/${label.getDate()} ${label.getHours()}:${label.getMinutes().toString().padStart(2, '0')}`);
+                        data.push(Math.max(150000 + (Math.random() - 0.5) * 450000, 200000)); // Example data
+                    }
+                    break;
+                case 'days':
+                    for (let i = 29; i >= 0; i--) {
+                        const label = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
+                        labels.push(`${label.getMonth() + 1}/${label.getDate()}`);
+                        data.push(Math.max(150000 + (Math.random() - 0.5) * 450000, 200000)); // Example data
+                    }
+                    break;
+                case 'months':
+                    for (let i = 11; i >= 0; i--) {
+                        const label = new Date(now.getFullYear(), now.getMonth() - i, 1);
+                        labels.push(`${label.getFullYear()}-${label.getMonth() + 1}`);
+                        data.push(Math.max(150000 + (Math.random() - 0.5) * 450000, 200000)); // Example data
+                    }
+                    break;
+            }
+            return { labels, data };
+        }
+
+        // Initialize Chart
+        const ctx = document.getElementById('vanillaChart').getContext('2d');
+        let vanillaChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Vanilla Price (UGX)',
+                    data: [],
+                    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Light black
+                    borderColor: 'rgba(0, 0, 0, 0.8)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    pointBorderColor: '#fff',
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: 'rgba(75, 192, 192, 1)',
+                    pointHoverBorderColor: '#fff',
+                    pointHoverBorderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            title: function(context) {
+                                return `Time: ${context[0].label}`;
+                            },
+                            label: function(context) {
+                                return `Price: UGX ${context.formattedValue}`;
+                            }
+                        }
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Price (UGX)'
+                        },
+                        min: 50000, // Minimum value
+                        max: 500000, // Maximum value
+                        ticks: {
+                            stepSize: 50000 // Optional: Adjust the step size as needed
+                        }
+                    }
+                },
+                elements: {
+                    line: {
+                        borderCapStyle: 'round',
+                    }
+                },
+                layout: {
+                    padding: {
+                        top: 20,
+                        bottom: 20,
+                    }
+                }
+            }
+        });
+
+        // Duration Selection Handler
+        const durationSelect = document.getElementById('durationSelect');
+        durationSelect.addEventListener('change', async (e) => {
+            const selectedDuration = e.target.value;
+            const data = await fetchRealTimeData(selectedDuration);
+            updateChart(data);
+        });
+
+        // Update Chart Data
+        function updateChart({ labels, data }) {
+            vanillaChart.data.labels = labels;
+            vanillaChart.data.datasets[0].data = data;
+            vanillaChart.update();
+        }
+
+        // Initialize chart with default data
+        async function initializeChart() {
+            const data = await fetchRealTimeData('hours');
+            updateChart(data);
+        }
+
+        initializeChart();
+
+        // Dropdown Toggle Functions
+        function toggleDropdown(dropdownId) {
+            document.getElementById(dropdownId).classList.toggle('show');
+        }
+
+        // Event Listeners for Buyer and Seller Buttons
+        document.getElementById('buyerBtn').addEventListener('click', () => {
+            toggleDropdown('buyerOptions');
+            document.getElementById('sellerOptions').classList.remove('show');
+        });
+
+        document.getElementById('sellerBtn').addEventListener('click', () => {
+            toggleDropdown('sellerOptions');
+            document.getElementById('buyerOptions').classList.remove('show');
+        });
+
+        // Close Dropdowns when clicking outside
+        window.addEventListener('click', (e) => {
+            if (!e.target.matches('#buyerBtn')) {
+                document.getElementById('buyerOptions').classList.remove('show');
+            }
+            if (!e.target.matches('#sellerBtn')) {
+                document.getElementById('sellerOptions').classList.remove('show');
+            }
+        });
+    </script>
+
+</body>
+</html>

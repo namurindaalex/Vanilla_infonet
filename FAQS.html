@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla Infonet web-portal FAQs Page</title>
+    <link rel="stylesheet" href="new.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="IMAGES/logo1.png" alt="Logo" width="200" height="120">
+            </div>
+            <div class="navbar-separator"></div>
+            <div class="navbar-profile">                
+                <p> Welcome to Vanilla Infonet web-portal, your gateway to successful vanilla Production!<br>
+                    <br>Frequently Asked Questions !
+                </p>
+            </div>
+            <div class="navbar-signout">
+                <a href="index.php"><button class="startbutton">Sign Out</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="left-sidebar">
+            <div class="imp-links">
+                <a href="adminpage.html" id="homeLink"><img src="IMAGES/products.jpg">Home</a>
+                <a href="EVENTS.html"><img src="IMAGES/pricing.jpg">Update Events</a>
+                <a href=""><img src="IMAGES/resources.png">Update FAQs</a>
+                <a href="updatepost.php"><img src="IMAGES/resources.png">Update Story</a>
+                <a href="#"><img src="IMAGES/sms.png">Broadcast SMS</a>
+                <a href="#"><img src="IMAGES/resources.png">Call</a>
+                <a href="#"><img src="IMAGES/price.png">Add Farmer</a>
+                <a href="userlist.php"><img src="IMAGES/language.jpg">View List</a>
+                <a href="#"><img src="IMAGES/FAQ.png">FAQ</a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="slid">
+                <p class="slider_heading">Welcome to our Frequently Asked Questions (FAQs) page!</p>
+                <p class="slider_par2">find answers to the most common questions about Vanilla, Prices, products, 
+                    and more. Whether you're seeking information about specific processes 
+                    or just exploring our platform, this page is designed to provide you with quick and clear solutions.</p>
+                    <br><br>
+                    <div class="navbar-signoutt">
+                        <a><button id="myProfileBtn" class="startbuilding">Add FAQ</button></a>
+                        <div id="faqInputContainer" style="display:none; margin-top: 5px;">
+                            <div style="display: flex; gap: 10px;">
+                                <input type="text" id="question" placeholder="Question" style="width: 48%; height: 50px; padding: 5px;" required/>
+                                <input type="text" id="answer" placeholder="Answer" style="width: 48%; height: 50px; padding: 5px;"required/>
+                            </div>
+                            <button onclick="addFAQ()" style="padding: 5px 10px; margin-top: 10px;">Submit</button>
+                        </div>
+                    </div>
+                    
+            </div>        
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle FAQ input visibility
+        document.getElementById("myProfileBtn").addEventListener("click", function() {
+            var faqInputContainer = document.getElementById("faqInputContainer");
+            if (faqInputContainer.style.display === "none") {
+                faqInputContainer.style.display = "block";
+            } else {
+                faqInputContainer.style.display = "none";
+            }
+        });
+
+        // Function to add FAQ
+        async function addFAQ() {
+            const question = document.getElementById('question').value;
+            const answer = document.getElementById('answer').value;
+
+            const response = await fetch('faq_manager.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question, answer })
+            });
+
+            const result = await response.json();
+            alert(result.message || result.error);
+            if (result.message) {
+                window.location.reload(); // Refreshes the page
+            }
+        }
+
+        // Fetch and display FAQs on page load
+        window.onload = fetchFAQs;
+
+        async function fetchFAQs() {
+            const response = await fetch('faq_manager.php');
+            const faqs = await response.json();
+            const faqList = document.getElementById('faq-list');
+            faqList.innerHTML = '';
+
+            if (faqs.length > 0) {
+                faqs.forEach(faq => {
+                    faqList.innerHTML += `
+                        <div>
+                            <h3>${faq.question}</h3>
+                            <p>${faq.answer}</p>
+                            <button onclick="deleteFAQ(${faq.id})">Delete</button>
+                            <button onclick="populateUpdateForm(${faq.id}, '${faq.question}', '${faq.answer}')">Update</button>
+                        </div>
+                    `;
+                });
+            } else {
+                faqList.innerHTML = '<p>No FAQs found.</p>';
+            }
+        }
+
+        function populateUpdateForm(id, question, answer) {
+            document.getElementById('update-id').value = id;
+            document.getElementById('update-question').value = question;
+            document.getElementById('update-answer').value = answer;
+        }
+
+        async function deleteFAQ(id) {
+            const response = await fetch(`faq_manager.php?id=${id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                alert('FAQ deleted successfully.');
+                fetchFAQs(); // Refresh the list
+            } else {
+                alert('Failed to delete FAQ.');
+            }
+        }
+    </script>
+</body>
+</html>
