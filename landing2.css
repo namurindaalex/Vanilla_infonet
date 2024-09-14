@@ -182,8 +182,8 @@ nav ul li ul li a {
 .about {
     padding: 20px;
     text-align: center;
-    margin-left: 100px; /* Centralize content */
-    margin-right: 100px; /* Centralize content */
+    margin-left: auto; /* Centralize content */
+    margin-right: auto; /* Centralize content */
     max-width: 100%; /* Prevent overflow */
 }
 
